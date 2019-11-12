@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Config</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' />
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </link>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <form>
+    <div class="w3-row">
+      <div class="w3-card-4 w3-quarter w3-margin">
+        <header class="w3-container w3-blue">
+          <h4>Search</h4>
+        </header>
+        <div class="w3-container">
+          <p><input placeholder="Search Symbols" id="_search" class="w3-input"></p>
+          <button type="submit" class="w3-button w3-blue">Go</button>
+          <p />
+        </div>
+        <footer class="w3-container w3-blue" />
+      </div>
+      <div class="w3-card-4 w3-quarter w3-margin">
+        <header class="w3-container w3-blue">
+          <h4>List of Added Symbols</h4>
+        </header>
+        <div class="w3-container">
+          <p>
+            <ol>
+              <% if(locals.symbols) { symbols.forEach(function(symbol){ %>
+              <li> <%_ symbol _%> </li>
+              <% }); } %>
+            </ol>
+          </p>
+        </div>
+        <footer class="w3-container w3-blue" />
+      </div>
+    </div>
+    <div class="w3-row">
+      <div class="w3-card-4 w3-quarter w3-margin">
+        <header class="w3-container w3-green">
+          <h4>Results</h4>
+        </header>
+        <div class="w3-container">
+          <p>
+            <ol>
+              <% if(locals.searchResults) { searchResults.forEach(function(symbol){ %>
+              <li> <%_ symbol _%> </li>
+              <% }); } %>
+            </ol>
+          </p>
+        </div>
+        <footer class="w3-container w3-green" />
+      </div>
+    </div>
+  </form>
+</body>
+<script>
+  $(document).ready(function () {
+    console.log("ready!");
+  });
+  $('form').on('submit', function (event) {
+    event.preventDefault();
+    var text = $("#_search").val();
+
+    axios.get('/api/search?symbol=' + text)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .finally(function () {
+      });
+  });
+</script>
+
+</html>
