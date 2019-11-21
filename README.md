@@ -1,5 +1,5 @@
 # fullstack-javascript
-This repository contains example apps on Stock Market live data. This makes use of APIs from https://www.worldtradingdata.com/.
+This repository contains example apps on Stock Market data. 
 
 There is one backend app as of now : server-express and two client side apps : client-vue and client-vue-vuex. As the name suggests the first client app has the same features but with plain Vuejs and no Vuex. Second client app includes local stprage with Vuex and Vuetify integration also for UI elements.
 
